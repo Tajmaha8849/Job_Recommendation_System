@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommended Jobs</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            padding: 20px;
+            background-color: #4a90e2;
+            color: white;
+        }
+        .nav {
+            margin: 10px 0;
+        }
+        .nav a {
+            margin: 0 15px;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .job-list {
+            max-width: 800px;
+            margin: auto;
+        }
+        .job-card {
+            background-color: white;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .job-card h3 {
+            margin: 0;
+        }
+        .tags span {
+            background-color: #eee;
+            padding: 5px 10px;
+            border-radius: 10px;
+            margin-right: 5px;
+        }
+        .apply-button {
+            display: inline-block;
+            background-color:black;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none; /* Remove underline */
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+        .apply-button:hover {
+            background-color: #4a90e2; /* Darker green on hover */
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #4a90e2;
+            color: white;
+            margin-top: 20px;
+        }
+        .social-icons a {
+            margin: 0 10px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5em; /* Adjust icon size */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Job Recommendations</h1>
+        <div class="nav">
+            <a href="/">Home</a>
+            <a href="/contact">Contact Us</a>
+            <a href="/privacy">Privacy</a>
+            <a href="/terms">Terms & Conditions</a>
+        </div>
+        <p>Total Jobs Found: {{ count }}</p>
+    </div>
+
+    <div class="job-list">
+        {% if jobs %}
+            {% for job in jobs %}
+            <div class="job-card">
+                <h3>{{ job['title'] }}</h3>
+                <p><strong>Company:</strong> {{ job['company_name'] }}</p>
+                <div class="tags">
+                    {% for tag in job['tags'] %}
+                    <span>{{ tag }}</span>
+                    {% endfor %}
+                </div>
+                <a href="{{ job['url'] }}" target="_blank" class="apply-button">Apply Job</a>
+            </div>
+            {% endfor %}
+        {% else %}
+            <h3>No jobs found for your skills. Please try again later.</h3>
+        {% endif %}
+    </div>
+
+    <footer>
+        <p>Connect with us:</p>
+        <div class="social-icons">
+            <a href="https://www.instagram.com/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/" target="_blank"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.facebook.com/" target="_blank"><i class="fab fa-facebook"></i></a>
+        </div>
+        <p>&copy; 2024 Job Recommendation System. All rights reserved.</p>
+    </footer>
+</body>
+</html>
