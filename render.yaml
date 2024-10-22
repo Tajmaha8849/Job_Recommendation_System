@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: my-flask-app
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python app.py"
+    autoDeploy: true
+    envVars:
+      - key: ADZUNA_APP_ID
+        value: your_adzuna_app_id
+      - key: ADZUNA_API_KEY
+        value: your_adzuna_api_key
